@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Product } from '../Product';
 
 @Component({
@@ -18,10 +18,13 @@ export class ProductsListComponent implements OnInit {
     new Product(2, 'iPad', 400,'This is a ipad'),
     new Product(3, 'Apple TV', 1000,'This is a TV'),
   ]
-
   constructor() {}
 
   ngOnInit() {
+  }
+
+  delete(product: Product) {
+    this.products.splice(product.id -1 , 1);
   }
 
 }

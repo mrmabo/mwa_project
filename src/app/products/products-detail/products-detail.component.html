@@ -1,0 +1,8 @@
+<div *ngIf=" selectProduct != null">
+  <p>id: {{selectProduct?.id}}</p>
+  <p>name: {{selectProduct?.name}}</p>
+  <p>price: {{selectProduct?.price}}</p>
+  <p>description: {{selectProduct?.description}}</p>
+  <input type="button" value="del" (click)="requestDelete()"/>
+</div>
+

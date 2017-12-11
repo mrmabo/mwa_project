@@ -1,5 +1,8 @@
 <ul>
-  <li *ngFor="let product of products;">
+  <li *ngFor="let product of products;" (click)="selectProduct = product">
     {{product.name}}
   </li>
 </ul>
+
+<app-products-detail [selectProduct] = "selectProduct" (deleteProduct)="delete($event)"></app-products-detail>
+
