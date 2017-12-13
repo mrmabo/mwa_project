@@ -6,13 +6,15 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { ProductsDetailComponent } from './products/products-detail/products-detail.component';
 import { CartComponent } from './cart/cart.component';
 import { CartService } from './cart/cart.service';
+import { sumPipe } from './shared/sum.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsListComponent,
     ProductsDetailComponent,
-    CartComponent
+    CartComponent,
+    sumPipe
   ],
   imports: [
     BrowserModule

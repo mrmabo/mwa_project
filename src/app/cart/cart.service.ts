@@ -1,15 +1,17 @@
 import { Product } from "../products/Product";
 import { CartItem } from "./cart-item.model";
 import { Subject } from "rxjs/Subject";
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 export class CartService{
 
-    cartListChanged = new Subject<CartItem[]>();
+    
     private cartList : CartItem[] = []
+    
+    cartListChanged = new BehaviorSubject<CartItem[]>(this.cartList);
 
-    getAll = () => {
-        return this.cartList.slice();
+    getAll = () : Observable<CartItem[]> => {
+        return this.cartListChanged.asObservable();
     }
 
     add = (product: Product)=>{
@@ -26,7 +28,6 @@ export class CartService{
                 }
             }
         }
-        console.log(this.cartList)
         this.cartListChanged.next(this.cartList.slice());
         this.cartListChanged.complete();
     }

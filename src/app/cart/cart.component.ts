@@ -15,18 +15,17 @@ export class CartComponent implements OnInit, OnDestroy {
   cartItems: CartItem[];
   private subscription: Subscription;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) { 
+    this.subscription = this.cartService.getAll()
+    .subscribe(
+      (cartItems: CartItem[]) => {
+        console.log(cartItems)
+        this.cartItems = cartItems;
+      }
+    );
+  }
 
   ngOnInit() {
-    this.cartItems = this.cartService.getAll();
-    this.subscription = this.cartService.cartListChanged
-      .subscribe(
-        (cartItems: CartItem[]) => {
-          console.log(2222)
-          console.log(cartItems)
-          this.cartItems = cartItems;
-        }
-      );
   }
 
   ngOnDestroy() {
