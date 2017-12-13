@@ -7,6 +7,7 @@ export class CartService{
 
     
     private cartList : CartItem[] = []
+    private size: number;
     
     cartListChanged = new BehaviorSubject<CartItem[]>(this.cartList);
 
@@ -15,20 +16,22 @@ export class CartService{
     }
 
     add = (product: Product)=>{
-        if(this.cartList.length == 0){
-            let newCartItem = new CartItem(product, [1]);
-            this.cartList.push(newCartItem);
-        } else {
-            for( let i = 0; i < this.cartList.length ; i++){
-                if(this.cartList[i].product.id == product.id){
-                    this.cartList[i].nums.push(1);
-                } else {
-                    let newCartItem = new CartItem(product, [1]);
-                    this.cartList.push(newCartItem);
-                }
+        
+        let found = false;
+        this.cartList.forEach(item=>{
+            if(item.product.id === product.id){
+                found = true;
+                item.num += 1;
+                this.size++;
+                return;
             }
+        });
+
+        if(!found){
+            this.cartList.push(new CartItem(product,1));
+            this.size++;
         }
-        this.cartListChanged.next(this.cartList.slice());
+        this.cartListChanged.next(this.cartList);
         this.cartListChanged.complete();
     }
 }

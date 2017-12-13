@@ -1,4 +1,5 @@
 <div *ngFor="let obj of cartItems">
   name: {{obj.product.name}} 
-  nums: {{obj.nums | json}}
+  nums: {{obj.num}}
+  total: {{obj|itemTotal:obj.num }}
 </div>
