@@ -8,6 +8,10 @@ import { CartComponent } from './cart/cart.component';
 import { CartService } from './cart/cart.service';
 import { sumPipe } from './shared/sum.pipe';
 import { ItemTotalPipe } from './shared/item-total.pipe';
+import { ProductsAddComponent } from './products/products-add/products-add.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -16,10 +20,14 @@ import { ItemTotalPipe } from './shared/item-total.pipe';
     ProductsDetailComponent,
     CartComponent,
     sumPipe,
-    ItemTotalPipe
+    ItemTotalPipe,
+    ProductsAddComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [CartService],
   bootstrap: [AppComponent]
